@@ -48,3 +48,22 @@ const imagens = [
     }
   ];
 
+let current = 0;
+let previous = document.querySelector('#anterior');
+let next = document.querySelector('#proximo');
+
+function getImage(new_image) {
+  let image = document.querySelector('#slide');
+  image.src = servidorDasImagens + '/' + new_image.arquivo;
+  image.alt = new_image.descricao;
+}
+
+next.addEventListener('click', function() {
+  current = (current + 1) % imagens.length;
+  getImage(imagens[current]);
+});
+
+previous.addEventListener('click', function() {
+  current = current > 0 ? current - 1 : imagens.length - 1;
+  getImage(imagens[current]);
+});
